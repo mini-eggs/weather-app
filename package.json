@@ -1,0 +1,11 @@
+{
+  "name": "weather",
+  "version": "1.0.0",
+  "scripts": {
+    "ios": "cd weather && react-native run-ios",
+    "android": "cd weather && react-native run-android",
+    "web": "cd weather/src && npm start"
+  },
+  "author": "Evan M Jones <evanjones4040@yahoo.com>",
+  "license": "MIT"
+}
