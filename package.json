@@ -2,10 +2,22 @@
   "name": "weather",
   "version": "1.0.0",
   "scripts": {
-    "ios": "cd weather && react-native run-ios",
-    "android": "cd weather && react-native run-android",
-    "web": "cd weather/src && npm start"
+    "moveapp": "rsync -av ./shared/* ./app/src/",
+    "watchapp": "watch 'npm run moveapp' ./shared ",
+    "preios": "concurrently --kill-others 'cd app && npm run ios' ",
+    "ios": "npm run watchapp",
+    "preandroid": "concurrently --kill-others 'cd app && npm run android' ",
+    "android": "npm run watchapp",
+    "moveweb": "rsync -av ./shared/* ./web/src/",
+    "watchweb": "watch 'npm run moveweb' ./shared ",
+    "web": "concurrently --kill-others 'npm run watchweb' 'cd web && npm start' ",
+    "preboth": "concurrently --kill-others 'cd app && npm run ios' ",
+    "both": "concurrently --kill-others \"watch 'npm run moveweb && npm run moveapp' ./shared\" \"cd web && npm start\" "
   },
   "author": "Evan M Jones <evanjones4040@yahoo.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^3.4.0",
+    "watch": "^1.0.2"
+  }
 }
