@@ -2,17 +2,18 @@ import React from "react";
 import { Platform } from "react-native";
 import Styled from "styled-components/native";
 
-const Header = Styled.View`
-  height: ${Platform.OS === "web" ? 50 : 0};
-  background-color: white;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+const Header = Platform.OS === "web"
+  ? Styled.View`
+  height: 50;
   justify-content: center;
-  align-items: center
-  flex: 1;
-  display: flex;
+  align-items: center;
+  border: solid;
+  border-color: #e2e2e7;
+  border-width: 0;
+  border-bottom-width: 1;
+`
+  : Styled.View`
+  display: none;
 `;
 
 const Text = Styled.Text`

@@ -2,16 +2,16 @@ import React from "react";
 import { TouchableHighlight } from "react-native";
 import { withNavigation } from "react-navigation";
 
-function navigate(navigation, href) {
+function navigate(navigation, href, back) {
   return function() {
-    href === "home" ? navigation.goBack() : navigation.navigate(href);
+    back ? navigation.goBack() : navigation.navigate(href);
   };
 }
 
-function Link({ children, href, navigation }) {
+function Link({ children, href, navigation, back }) {
   return (
     <TouchableHighlight
-      onPress={navigate(navigation, href)}
+      onPress={navigate(navigation, href, back)}
       underlayColor="transparent"
       children={children}
     />

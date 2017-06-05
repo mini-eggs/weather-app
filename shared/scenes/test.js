@@ -1,22 +1,35 @@
 import React from "react";
 import { StatusBar } from "react-native";
-import Styled from "styled-components/native";
 import Fade from "../components/fade";
 import Link from "../components/link";
 import Header from "../components/header";
-import { Container, Text, SmallText } from "./home";
+import SceneContainer from "../styles/sceneContainer";
+import HeaderWrap from "../styles/headerWrap";
+import PageWrap from "../styles/pageWrap";
+import LargeText from "../styles/largeText";
+import MediumText from "../styles/mediumText";
+import Center from "../styles/center";
+import FlexCenter from "../styles/flexCenter";
 
-export default function() {
+export default function(props) {
   return (
-    <Container>
-      <StatusBar backgroundColor="white" barStyle="dark-content" />
-      <Header title="test" />
-      <Fade>
-        <Text>Page Two</Text>
-        <Link href="home">
-          <SmallText>go to home</SmallText>
-        </Link>
-      </Fade>
-    </Container>
+    <SceneContainer>
+      <HeaderWrap>
+        <StatusBar backgroundColor="white" barStyle="dark-content" />
+        <Header title="test" />
+      </HeaderWrap>
+      <PageWrap>
+        <FlexCenter>
+          <Fade>
+            <LargeText>Second Scene</LargeText>
+            <Link back={true} href="home">
+              <Center>
+                <MediumText>Home</MediumText>
+              </Center>
+            </Link>
+          </Fade>
+        </FlexCenter>
+      </PageWrap>
+    </SceneContainer>
   );
 }
