@@ -1,8 +1,7 @@
-import React from "react";
 import { AppRegistry, Platform } from "react-native";
-import WeatherApp from "./setup";
+import app from "./app";
 
-AppRegistry.registerComponent("app", () => WeatherApp);
+AppRegistry.registerComponent("app", () => app);
 
 if (Platform.OS === "web") {
   AppRegistry.runApplication("app", {

@@ -1,7 +1,7 @@
 import React from "react";
 import { StatusBar } from "react-native";
 import Styled from "styled-components/native";
-import Fade from "./decorators/fade";
+import Fade from "../components/fade";
 
 const Container = Styled.View`
   flex: 1;
@@ -18,9 +18,9 @@ const Text = Styled.Text`
 export default function() {
   return (
     <Container>
-      <StatusBar backgroundColor="blue" barStyle="light-content" />
+      <StatusBar backgroundColor="white" barStyle="dark-content" />
       <Fade>
-        <Text>Weather App</Text>
+        <Text>Page Two</Text>
       </Fade>
     </Container>
   );

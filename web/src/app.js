@@ -1,25 +1,37 @@
 import React from "react";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import { Provider, connect } from "react-redux";
+import { Provider } from "react-redux";
 import Thunk from "redux-thunk";
 import { offline } from "redux-offline";
 import offlineConfig from "redux-offline/lib/defaults";
-import { Router, Scene } from "react-native-router-flux";
-import Home from "./scenes/home";
+import { HashRouter } from "react-router-dom";
+import { routerReducer, routerMiddleware } from "react-router-redux";
+import createHistory from "history/createHashHistory";
+import { Route, Switch } from "react-router";
 
-const Reducers = combineReducers([]);
-const middlewares = compose(applyMiddleware(Thunk), offline(offlineConfig));
-const store = createStore(Reducers, middlewares);
-const RouterConnect = connect()(Router);
+import Reducers from "./reducers/";
+import HomeScene from "./scenes/home";
+import TestScene from "./scenes/test";
+
+const history = createHistory();
+const routerMiddlewareCreated = routerMiddleware(history);
+const reducers = combineReducers({ ...Reducers, route: routerReducer });
+const appliedMiddlewards = applyMiddleware(routerMiddlewareCreated, Thunk);
+const composedMiddlewards = compose(appliedMiddlewards);
+// const composedMiddlewards = compose(appliedMiddlewards, offline(offlineConfig));
+const storeParams = [reducers, composedMiddlewards];
+const store = createStore(...storeParams);
 
 export default function() {
   return (
     <Provider store={store}>
-      <RouterConnect>
-        <Scene key="root">
-          <Scene hideNavBar key="home" component={Home} />
-        </Scene>
-      </RouterConnect>
+      <HashRouter>
+        <Switch>
+          <Route path="/" exact={true} component={HomeScene} />
+          <Route path="/Home" exact={true} component={HomeScene} />
+          <Route path="/Test" exact={true} component={TestScene} />
+        </Switch>
+      </HashRouter>
     </Provider>
   );
 }
