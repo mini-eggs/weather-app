@@ -1,2 +1,5 @@
-import Routing from "./routing";
-export default { Routing };
+function Bogus(state = {}, { type, payload }) {
+  return state;
+}
+
+export default { Bogus };

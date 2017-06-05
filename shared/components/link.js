@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { pushRoute } from "../reducers/routing";
+// import { pushRoute } from "../reducers/routing";
+import { push } from "react-router-redux";
 import { TouchableHighlight } from "react-native";
 
 function Link({ children, href, navigate }) {
@@ -13,7 +14,7 @@ function Link({ children, href, navigate }) {
 
 function mapDispatch(dispatch) {
   return {
-    navigate: url => () => dispatch(pushRoute(url))
+    navigate: url => () => dispatch(push(url))
   };
 }
 

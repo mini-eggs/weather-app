@@ -11,12 +11,11 @@ import HomeScene from "./scenes/home";
 import TestScene from "./scenes/test";
 
 const Router = StackNavigator({
-  Home: { screen: HomeScene, navigationOptions: { title: "Home" } },
-  Test: { screen: TestScene, navigationOptions: { title: "Test" } }
+  home: { screen: HomeScene, navigationOptions: { title: "Home" } },
+  test: { screen: TestScene, navigationOptions: { title: "Test" } }
 });
 
-const middlewares = compose(applyMiddleware(Thunk));
-// const middlewares = compose(applyMiddleware(Thunk), offline(offlineConfig));
+const middlewares = compose(applyMiddleware(Thunk), offline(offlineConfig));
 const store = createStore(combineReducers(Reducers), middlewares);
 
 export default function() {

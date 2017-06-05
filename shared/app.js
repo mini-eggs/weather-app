@@ -17,8 +17,7 @@ const history = createHistory();
 const routerMiddlewareCreated = routerMiddleware(history);
 const reducers = combineReducers({ ...Reducers, route: routerReducer });
 const appliedMiddlewards = applyMiddleware(routerMiddlewareCreated, Thunk);
-const composedMiddlewards = compose(appliedMiddlewards);
-// const composedMiddlewards = compose(appliedMiddlewards, offline(offlineConfig));
+const composedMiddlewards = compose(appliedMiddlewards, offline(offlineConfig));
 const storeParams = [reducers, composedMiddlewards];
 const store = createStore(...storeParams);
 
@@ -28,8 +27,8 @@ export default function() {
       <HashRouter>
         <Switch>
           <Route path="/" exact={true} component={HomeScene} />
-          <Route path="/Home" exact={true} component={HomeScene} />
-          <Route path="/Test" exact={true} component={TestScene} />
+          <Route path="/home" exact={true} component={HomeScene} />
+          <Route path="/test" exact={true} component={TestScene} />
         </Switch>
       </HashRouter>
     </Provider>
