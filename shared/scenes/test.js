@@ -16,7 +16,7 @@ export default function(props) {
     <SceneContainer>
       <HeaderWrap>
         <StatusBar backgroundColor="white" barStyle="dark-content" />
-        <Header title="test" />
+        <Header title="Test" />
       </HeaderWrap>
       <PageWrap>
         <FlexCenter>
