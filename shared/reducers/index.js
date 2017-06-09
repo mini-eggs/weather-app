@@ -1,5 +1,4 @@
-function Bogus(state = {}, { type, payload }) {
+function Bogus(state = {}) {
   return state;
 }
-
 export default { Bogus };

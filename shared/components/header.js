@@ -1,9 +1,7 @@
 import React from "react";
-import { Platform, Image } from "react-native";
+import { Platform } from "react-native";
 import Styled from "styled-components/native";
-
-const hamburger =
-  "https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png";
+import Link from "./link";
 
 const webStyles = `
   height: 50;
@@ -24,42 +22,64 @@ const Header = Styled.View`
   ${Platform.OS === "web" ? webStyles : appStyles}
 `;
 
-const Button = Styled.TouchableHighlight`
-  flex: 0.25;
-  justify-content: center;
-  align-items: stretch;
+const Wrap = Styled.View`
+  flex-direction: row;
+  max-width: 800;
+  padding-left: 10;
+  padding-right: 10;
+  flex: 1;
 `;
 
 const Title = Styled.View`
-  flex: 1;
+  flex: 0.5;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 `;
 
-const Placeholder = Styled.View`
-  flex: 0.25;
+const SubTitles = Styled(Title)`
+  flex: 0.5;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
 `;
 
 const Text = Styled.Text`
   font-size: 24;
 `;
 
-export default function({ title }) {
+const SubText = Styled(Text)`
+  font-size: 12;
+  margin-left: 10;
+`;
+
+const defaultLinks = [
+  { name: "Home", href: "home" },
+  { name: "Test", href: "test" }
+];
+
+function SingleLink({ name, href }, index) {
+  return (
+    <Link key={index} href={href}>
+      <SubText>
+        {name}
+      </SubText>
+    </Link>
+  );
+}
+
+export default function({ title, links = defaultLinks }) {
   return (
     <Header>
-      <Button>
-        <Image
-          style={{ flex: 0.65 }}
-          source={{ uri: hamburger }}
-          resizeMode={Image.resizeMode.contain}
-        />
-      </Button>
-      <Title>
-        <Text>
-          {title}
-        </Text>
-      </Title>
-      <Placeholder />
+      <Wrap>
+        <Title>
+          <Text>
+            {title}
+          </Text>
+        </Title>
+        <SubTitles>
+          {defaultLinks.map(SingleLink)}
+        </SubTitles>
+      </Wrap>
     </Header>
   );
 }

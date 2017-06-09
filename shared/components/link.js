@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-// import { pushRoute } from "../reducers/routing";
 import { push } from "react-router-redux";
 import { TouchableHighlight } from "react-native";
 
